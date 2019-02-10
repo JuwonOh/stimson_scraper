@@ -1,6 +1,6 @@
-# DoD_scraper
+# Stimson_scraper
 
-미국 국방부(https://www.cato.org/)의 자료들을 받아오기 위한 크롤러입니다.
+미국의 씽크탱크인(https://www.stimson.org/)의 자료들을 받아오기 위한 크롤러입니다. 전체 4가지 category(Protecting people, Greand stretegy of pivotal place, Preserving the planer, Promoting security and prosperity)의 프로그램에 대한 자료들을 저장해줍니다.
 
 ## User guide
 
@@ -21,31 +21,29 @@ Using Python script with arguments
 | verbose | False, store_true | If True use verbose mode |
 
 ```
-python scraping_latest_news.py
+python scraping_latest_news.py을 사용하면, 특정기간까지 모든 카테고리의 자료를 ouput폴더에 받아올 수 있습니다.
 ```
+특정한 카테고리와 기간동안의 글을 받아오기 위해서는 다음과 같이 사용할 수 있습니다.
 
 ```
-[1 / 10] (January 23, 2019) Temporary Protected Status and Immigration to the United States
-[2 / 10] (January 22, 2019) How ‘Market Failure’ Arguments Lead to Misguided Policy
-[3 / 10] (January 16, 2019) Do 40-Year-Old Facts Still Matter?: Long-Run Effects of Federal Oversight under the Voting Rights Act
-[4 / 10] (January 15, 2019) Do Immigrants Import Terrorism?
-[5 / 10] (January 15, 2019) The Myth of the Cyber Offense: The Case for Restraint
-[6 / 10] (January 9, 2019) More Legislation, More Violence? The Impact of Dodd-Frank in the Democratic Republic of the Congo
-[7 / 10] (January 8, 2019) The Case for an Immigration Tariff: How to Create a Price-Based Visa Category
-[8 / 10] (January 2, 2019) The Spread of Deposit Insurance and the Global Rise in Bank Asset Risk since the 1970s
-[9 / 10] (December 19, 2018) How Legalizing Marijuana Is  Securing the Border: The Border Wall, Drug Smuggling, and Lessons for Immigration Policy
-[10 / 10] (December 19, 2018) Militarization Fails to Enhance Police Safety or Reduce Crime but May Harm Police Reputation
+from Stimson_scraper import get_latest_allsecurity
+
+begin_date = '2018-07-01'
+max_num = 5
+sleep = 1.0
+
+for i, json_obj in enumerate(get_latest_allsecurity(begin_date, max_num, sleep)):
+    title = json_obj['title']
+    time = json_obj['time']
+    print('[{} / {}] ({}) {}'.format(i+1, max_num, time, title))
+    
 ```
-
-Get news urls from specific pages
-
-```python
-from whitehouse_scraper import parse_page
-from whitehouse_scraper import get_allnews_urls
-
-urls = get_allnews_urls(begin_page=1, end_page=3, verbose=True)
-for url in urls[:3]:
-    json_object = parse_page(url)    
+```
+[1 / 5] (Jan 3, 2019) Field Notes - Deep Geological Repository at Olkiluoto, Finlan
+[2 / 5] (Dec 14, 2018) ATT Reaches Milestone 100 States Parties
+[3 / 5] (Dec 7, 2018) Amazon in Crystal City: Threat and Opportunity for the Defense Department
+[4 / 5] (Nov 16, 2018) Shaping Strong Security Norms
+[5 / 5] (Nov 13, 2018) Nukes, the New Congress, and the Lost Art of Political Compromise
 ```
 
 ## 참고 코드
