@@ -1,6 +1,6 @@
 # Stimson_scraper
 
-미국의 씽크탱크인(https://www.stimson.org/)의 자료들을 받아오기 위한 크롤러입니다. 전체 4가지 category(Protecting people, Greand stretegy of pivotal place, Preserving the planer, Promoting security and prosperity)의 프로그램에 대한 자료들을 저장해줍니다.
+미국의 씽크탱크인(https://www.stimson.org)의 자료들을 받아오기 위한 크롤러입니다. 전체 4가지 category(Protecting people, Greand stretegy of pivotal place, Preserving the planer, Promoting security and prosperity)의 프로그램에 대한 자료들을 저장해줍니다.
 
 ## User guide
 
