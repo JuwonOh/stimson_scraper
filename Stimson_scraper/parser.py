@@ -1,6 +1,7 @@
 import re
 from .utils import get_soup
 from .utils import now
+from dateutil.parser import parse
 
 def parse_page(url):
     """
@@ -22,17 +23,20 @@ def parse_page(url):
     """
 
     try:
+        author =[]
+        content = []
         soup = get_soup(url)
         title = soup.find('h1', class_= 'product-title').text
         time = soup.find('div', class_ ='author-date-block').find('span', class_='date-product').text
         # for writting Co-worker
         sub_author = soup.find_all('div', class_ ='expert-name')
         author = [i.text for i in sub_author]
-        contents = soup.find('div', class_= 'field__item even').text
+        sub_contents = soup.find_all('p')
+        contents = [i.text for i in sub_contents]
 
         json_object = {
             'title' : title,
-            'time' : time,
+            'time' : parse(time),
             'content' : contents,
             'author' :author,
             'url' : url,
